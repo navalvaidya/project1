@@ -2,17 +2,14 @@ package com.ideas;
 
 
 import java.sql.*;
-import java.io.DataInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import com.oreilly.servlet.MultipartRequest;
-
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 /**
  * Servlet implementation class InsertToDatabase
@@ -25,7 +22,7 @@ public class UploadToDatabase extends HttpServlet {
      * Default constructor. 
      */
     public UploadToDatabase() {
-        // TODO Auto-generated constructor stub
+        
     }
 
 	/**
@@ -41,7 +38,7 @@ public class UploadToDatabase extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		
 		System.out.println("Inside get method");
 		String department=request.getParameter("department");
 		String name=request.getParameter("name");
@@ -52,10 +49,11 @@ public class UploadToDatabase extends HttpServlet {
 		boolean param = false;
 		try {
 		
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","root");
 		
 			
+			System.out.println("Inside post method");
 			PreparedStatement stat2=con.prepareStatement("INSERT INTO employee (department,name, designation, experience,comments,resumelink) VALUES (?, ?, ? ,? ,? ,? )");
 			stat2.setString(1, department);
 			stat2.setString(2, name);
@@ -68,6 +66,8 @@ public class UploadToDatabase extends HttpServlet {
 			
 			stat2.close();
 			con.close();
+			RequestDispatcher rd=request.getRequestDispatcher("/UploadFileServlet");  
+	        rd.forward(request, response);  
 			
 			
 		} catch (SQLException e) {
@@ -78,15 +78,15 @@ public class UploadToDatabase extends HttpServlet {
 			
 			e.printStackTrace();
 		}
-		//response.setContentType("application/json");
-		//response.getWriter().print(param);
-		//response.flushBuffer();
+		response.setContentType("application/json");
+		response.getWriter().print(param);
+		response.flushBuffer();
 		/*response.setContentType("text/plain");
 		 response.setStatus(response.SC_MOVED_TEMPORARILY);
 	      response.setHeader("Location", "http://localhost:8080/recruitmentportal/Bootstrap/bootstrap-3.3.5-dist/uploadui.html");*/    
-		MultipartRequest m = new MultipartRequest(request, "C:/Users/idnnaa/Desktop/upload");  
+		
 		
 	
 	}
-
+	
 }

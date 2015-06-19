@@ -10,9 +10,19 @@
   	<description></description>
   	<servlet-class>com.ideas.UploadToDatabase</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>UploadFileServlet</servlet-name>
+  	<display-name>UploadFileServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.ideas.UploadFileServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>UploadToDatabase</servlet-name>
   	<url-pattern>/UploadToDatabase</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UploadFileServlet</servlet-name>
+  	<url-pattern>/UploadFileServlet</url-pattern>
   </servlet-mapping>
   <session-config>
 <session-timeout>

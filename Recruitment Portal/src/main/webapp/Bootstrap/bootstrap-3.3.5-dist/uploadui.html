@@ -47,7 +47,11 @@
 
 <div class="container">
 
-
+<div class="form-group" align="left">
+<label>Upload Resume</label>
+<span class="glyphicon glyphicon-upload"></span>
+<input type="file" name="resumelink" id="resumelink"> 
+</div>
 
 <div class="form-group">
 <label for="department">Department</label>
@@ -75,25 +79,22 @@
 <textarea rows="4"  cols="50" name="comments" placeholder="Comments" ></textarea>
 </div>
 
-<div class="form-group" align="left">
-<label>Upload Resume</label>
-<span class="glyphicon glyphicon-upload"></span>
-<input type="file" name="resumelink" id="resumelink"> 
-</div>
+
 </div>
 <div>
-<button class="btn btn-primary"  name=submitbtn>Submit</button>
+<button type="submit" class="btn btn-primary" onclick="submitChanges()" name=submitbtn>Submit</button>
+
 <input type="reset" value="Reset" class="btn btn-primary" id="Reset Button">
 <a href="main.html" class="btn btn-primary">Back</a>
 </div>
 </form>
 
+
 <div id="resultContainer"> </div>
 <script>
 
 function submitChanges(){
-
- 
+	
 $.ajax({
 type: "POST",
 url: "http://localhost:8080/recruitmentportal/UploadToDatabase",
@@ -112,7 +113,6 @@ error : function() {
 	$("#resultContainer").html("<div class='alert alert-danger'>Server Error. Request could not be placed, please try again later</div>");
 }
 });
- 
 
 }
 </script>
