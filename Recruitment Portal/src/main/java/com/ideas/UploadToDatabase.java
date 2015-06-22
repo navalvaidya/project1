@@ -3,7 +3,6 @@ package com.ideas;
 
 import java.sql.*;
 import java.io.IOException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -61,13 +60,13 @@ public class UploadToDatabase extends HttpServlet {
 			stat2.setString(4, experience);
 			stat2.setString(5, comments);
 			stat2.setString(6, resumelink);
-			stat2.executeUpdate();
+			//stat2.executeUpdate();
 			param=true;
 			
 			stat2.close();
 			con.close();
-			RequestDispatcher rd=request.getRequestDispatcher("/UploadFileServlet");  
-	        rd.forward(request, response);  
+			//RequestDispatcher rd=request.getRequestDispatcher("/UploadFileServlet");  
+	        //rd.forward(request, response);  
 			
 			
 		} catch (SQLException e) {
@@ -76,7 +75,7 @@ public class UploadToDatabase extends HttpServlet {
 			
 		} catch (Exception e) {
 			
-			e.printStackTrace();
+		e.printStackTrace();
 		}
 		response.setContentType("application/json");
 		response.getWriter().print(param);
