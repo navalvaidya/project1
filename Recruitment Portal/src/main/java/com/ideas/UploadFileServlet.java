@@ -3,6 +3,9 @@ import com.ideas.fileupload;
 
 import java.io.IOException;
 import java.io.InputStream;
+
+
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -45,7 +48,7 @@ public class UploadFileServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		//Boolean updateResponse=false;
+		Boolean updateResponse=false;
 		
 		boolean isMultiPart=ServletFileUpload.isMultipartContent(request);
 		if(isMultiPart)
@@ -54,8 +57,8 @@ public class UploadFileServlet extends HttpServlet {
 			ServletFileUpload upload = new ServletFileUpload();
 			try
 			{
-				String [] temp=new String[10];
-				int i=0;
+				String [] temp=new String[20];
+				int i=0,j=0;
 				FileItemIterator itr = upload.getItemIterator(request);
 				while(itr.hasNext())
 				{
@@ -71,37 +74,55 @@ public class UploadFileServlet extends HttpServlet {
 						temp[i] = new String(b);
 						
 						i++;
-						//response.getWriter().println(fieldName+":"+value+"<br/>");
-						//System.out.println(fieldName);
-						//System.out.println(value);
+//						response.getWriter().println(fieldName+":"+value+"<br/>");
+//						System.out.println(fieldName);
+//						System.out.println(value);
 					}
 					else
 					{
+						if(j==0){
+							j++;
+						System.out.println("Starting upload.....");
 						String path = getServletContext().getRealPath("/"); 
-						if(fileupload.processFile(path, item))
+						if(SecondFileUpload.processFile(path, item))
 						{
 							response.getWriter().println("file upload successful");
 						System.out.println("upload successful");
 						}
 						else
 							response.getWriter().println("file upload failed");
+						}
+						else{
+							String path = getServletContext().getRealPath("/"); 
+							if(fileupload.processFile(path, item))
+							{
+								response.getWriter().println("file upload successful");
+							System.out.println("upload successful");
+							}
+							else
+								response.getWriter().println("file upload failed");
+						}
 					}
 				}
 				Class.forName("com.mysql.jdbc.Driver").newInstance();
 				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","root");
-				PreparedStatement stat2=con.prepareStatement("INSERT INTO `test`.`employee` (department,name, designation, experience,comments,resumelink) VALUES (?,?,?,?,?,?)");
+				PreparedStatement stat2=con.prepareStatement("INSERT INTO `test`.`employee` (department,name, designation, experience,cctc,ectc,prevorg,num,comments,resumelink,otherfile) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
 				//stat2.setString(1, fieldName);
-				for(i=0;i<5;i++)
+				for(i=0;i<9;i++)
 				{
 				stat2.setString(i+1, temp[i]);
 				}
 				String resume=fileupload.rqPath;
-				stat2.setString(6, resume);
+				String other=SecondFileUpload.rqPath2;
+				stat2.setString(10, resume);
+				stat2.setString(11, other);
 				stat2.executeUpdate();
 			
 				stat2.close();
 				con.close();
-			   // updateResponse=true;
+			    updateResponse=true;
+//				RequestDispatcher rd=request.getRequestDispatcher("/UploadToDatabase");  
+//		        rd.forward(request, response); 
 			}catch(FileUploadException fe)
 			{
 			fe.printStackTrace();	
@@ -119,7 +140,7 @@ public class UploadFileServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			response.setContentType("application/jason");
-			response.getWriter().print("true");
+			response.getWriter().print(updateResponse.toString());
 			response.flushBuffer();
 			 
 		}

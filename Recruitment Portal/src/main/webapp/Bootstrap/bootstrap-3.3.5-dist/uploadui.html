@@ -26,10 +26,10 @@
    <ul class="nav navbar-nav">
      
      <li class="active"><a href="uploadui.html">New Entry</a></li>
-     <li><a href="#">Update Information</a></li>
+     <li><a href="/recruitmentportal/Bootstrap/bootstrap-3.3.5-dist/jsp/UpdateEntries.jsp">Update Information</a></li>
      <li><a href="#">Upload from Excel</a></li>
      </ul>
-     <form name="information" action="http://localhost:8080/recruitmentportal/jsp/SearchResult.jsp"  method="post" >
+     <form name="information" action="/recruitmentportal/Bootstrap/bootstrap-3.3.5-dist/jsp/SearchResult.jsp"  method="post" >
       
     <div class="navbar-form navbar-right" role="search">
     <div class="form-group">
@@ -170,13 +170,15 @@
 			    processData:false,
 				*/
 				
-				success: function () {
-					
+				success: function (msg) {
+					if (msg === true) {
 						$("#resultContainer").html("<p style='color:green' class='alert alert-success'>Database Updated</p>");
 						$("#resultContainer").delay(100).fadeIn(300);
 						$("#resultContainer").delay(1200).fadeOut(800);
-						
-						
+					} else {
+						$("#resultContainer").html("<p style='color:red' class='alert alert-success'>Database Updated</p>");
+						$("#resultContainer").delay(1200).fadeOut(800);
+					}
 				},
 				error : function() {
 					$("#resultContainer").html("<div class='alert alert-danger'>Server Error. Request could not be placed, please try again later</div>");

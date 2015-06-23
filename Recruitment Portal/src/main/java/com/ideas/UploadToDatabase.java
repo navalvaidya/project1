@@ -3,7 +3,9 @@ package com.ideas;
 
 import java.sql.*;
 import java.io.IOException;
+
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class InsertToDatabase
  */
 @WebServlet(description = "servlet" ,urlPatterns={"/InsertToDatabase"})
+@MultipartConfig
 public class UploadToDatabase extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -28,7 +31,7 @@ public class UploadToDatabase extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		
 	
 	}
@@ -45,6 +48,7 @@ public class UploadToDatabase extends HttpServlet {
 		String designation=request.getParameter("designation");
 		String comments=request.getParameter("comments");
 		String resumelink=request.getParameter("resumelink");
+		System.out.println(department);
 		boolean param = false;
 		try {
 		
@@ -60,13 +64,13 @@ public class UploadToDatabase extends HttpServlet {
 			stat2.setString(4, experience);
 			stat2.setString(5, comments);
 			stat2.setString(6, resumelink);
-			//stat2.executeUpdate();
+			stat2.executeUpdate();
 			param=true;
 			
 			stat2.close();
 			con.close();
-			//RequestDispatcher rd=request.getRequestDispatcher("/UploadFileServlet");  
-	        //rd.forward(request, response);  
+//			RequestDispatcher rd=request.getRequestDispatcher("/UploadFileServlet");  
+//	        rd.forward(request, response);  
 			
 			
 		} catch (SQLException e) {
