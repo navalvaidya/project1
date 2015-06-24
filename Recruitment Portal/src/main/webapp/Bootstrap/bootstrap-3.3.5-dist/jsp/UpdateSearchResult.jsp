@@ -62,6 +62,7 @@ ResultSet result=stat1.executeQuery();
 		   <th>Experience</th>
 		   <th>comments</th>
 		   <th>Resume</th>
+		   <th>Other Files</th>
 		 </tr>
 		</thead>
 		<tbody>
@@ -72,12 +73,13 @@ ResultSet result=stat1.executeQuery();
 		
 		 <tr>
 		 
-		 <td><a href="/recruitmentportal/Bootstrap/bootstrap-3.3.5-dist/jsp/UpdateForm.jsp?id=<%=result.getInt("id") %>"><%=result.getString("department") %></a></td>
-		  <td><%=result.getString("name") %></td>
-		  <td><%=result.getString("designation") %></td>
-		  <td><%=result.getString("experience") %>
-		  <td><%=result.getString("comments") %></td>
+		 <td><a href="/recruitmentportal/Bootstrap/bootstrap-3.3.5-dist/jsp/UpdateForm.jsp?id=<%=result.getInt("id") %>" ><%=result.getString("department") %></a></td>
+		  <td><a href="/recruitmentportal/Bootstrap/bootstrap-3.3.5-dist/jsp/UpdateForm.jsp?id=<%=result.getInt("id") %>" ><%=result.getString("name") %></a></td>
+		  <td><a href="/recruitmentportal/Bootstrap/bootstrap-3.3.5-dist/jsp/UpdateForm.jsp?id=<%=result.getInt("id") %>" ><%=result.getString("designation") %></a></td>
+		  <td><a href="/recruitmentportal/Bootstrap/bootstrap-3.3.5-dist/jsp/UpdateForm.jsp?id=<%=result.getInt("id") %>" ><%=result.getString("experience") %></a></td>
+		  <td><a href="/recruitmentportal/Bootstrap/bootstrap-3.3.5-dist/jsp/UpdateForm.jsp?id=<%=result.getInt("id") %>" ><%=result.getString("comments") %></a></td>
 		  <td><%=result.getString("resumelink") %></td>
+		  <td><%=result.getString("other") %></td>
 		 
 		 </tr>
 		

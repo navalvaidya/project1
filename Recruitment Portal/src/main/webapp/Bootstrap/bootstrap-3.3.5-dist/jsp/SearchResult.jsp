@@ -36,12 +36,12 @@ ResultSet result=stat1.executeQuery();
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
        </button>
-   <a class="navbar-brand " href="http://localhost:8080/recruitmentportal/Bootstrap/bootstrap-3.3.5-dist/main.html">Ideas</a>
+   <a class="navbar-brand " href="/recruitmentportal/Bootstrap/bootstrap-3.3.5-dist/main.html">Ideas</a>
 </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         
-        <li><a href="http://localhost:8080/recruitmentportal/Bootstrap/bootstrap-3.3.5-dist/uploadui.html">New Entry</a></li>
+        <li><a href="/recruitmentportal/Bootstrap/bootstrap-3.3.5-dist/uploadui.html">New Entry</a></li>
         <li><a href="#">Update Information</a></li>
         <li><a href="#">Upload from Excel</a></li>
       </ul>

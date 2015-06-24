@@ -16,6 +16,18 @@
   	<description></description>
   	<servlet-class>com.ideas.UploadFileServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>DataUpdateController</servlet-name>
+  	<display-name>DataUpdateController</display-name>
+  	<description></description>
+  	<servlet-class>com.ideas.DataUpdateController</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>UpdateResumeOtherController</servlet-name>
+  	<display-name>UpdateResumeOtherController</display-name>
+  	<description></description>
+  	<servlet-class>com.ideas.UpdateResumeOtherController</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>UploadToDatabase</servlet-name>
   	<url-pattern>/UploadToDatabase</url-pattern>
@@ -23,6 +35,14 @@
   <servlet-mapping>
   	<servlet-name>UploadFileServlet</servlet-name>
   	<url-pattern>/UploadFileServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>DataUpdateController</servlet-name>
+  	<url-pattern>/DataUpdateController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UpdateResumeOtherController</servlet-name>
+  	<url-pattern>/UpdateResumeOtherController</url-pattern>
   </servlet-mapping>
   <session-config>
 <session-timeout>

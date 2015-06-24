@@ -67,56 +67,22 @@ String comments=result.getString("comments");
 
 <div class="container">
 <div class="jumbotron">
-<form name="infoForm" id="infoForm" class="ajax" action="/recruitmentportal/DataUpdateController?id=<%=id %>"  method="post" onsubmit="submitbtn.disabled = true; return true;">
+<form name="infoForm" id="infoForm" class="ajax" action="/recruitmentportal/UpdateResumeOtherController?id=<%=id %>"  enctype="multipart/form-data" method="post" onsubmit="submitbtn.disabled = true; return true;">
 
 <div class="container">
 
 
-<div class="form-group">
-<label for="department">Department</label>
-<input type="text" name="department" placeholder="Enter Name"  class="form-control" value="<%=result.getString("department")%>" required>
+<div class="form-group" align="left">
+<label>Upload other documents</label>
+<input type="file" name="other" id="other"> 
 </div>
-
-<div class="form-group">
-<label for="name">Name</label>
-<input type="text" name="name" placeholder="Enter Name"  class="form-control" value="<%=result.getString("name")%>" required>
-</div>
-
-<div class="form-group">
-<label for="designation">Designation</label>
-<input type="text" name="designation" placeholder="Enter Name"  class="form-control" value="<%=result.getString("designation")%>" required>
-</div>
-
-<div class="form-group">
-<label for="experience">Experience</label>
-<input type="number" min="0" name="experience" placeholder="Experience" class="form-control" value="<%=result.getString("experience")%>">
-</div>
-
-<div class="form-group">
-<label for="cctc">Current CTC</label>
-<input type="text" name="cctc" placeholder="Current CTC"  class="form-control" value="<%=result.getString("cctc")%>">
-</div>
-
-<div class="form-group">
-<label for="ectc">Expected CTC</label>
-<input type="text" name="ectc" placeholder="Expected CTC"  class="form-control" value="<%=result.getString("ectc")%>">
-</div>
-
-<div class="form-group">
-<label for="prevorg">Previous organization</label>
-<input type="text" name="prevorg" placeholder="Previous organization"  class="form-control" value="<%=result.getString("prevorg")%>">
-</div>
-
-<div class="form-group">
-<label for="num">Contact Number</label>
-<input type="text" name="num" placeholder="Contact Number"  class="form-control" value="<%=result.getString("num")%>">
-</div>
-
 
 <div class="form-group" align="left">
-<label for="comments">Comments</label><br>
-<textarea rows="4"  cols="50" name="comments" placeholder="Comments" >"<%=result.getString("comments")%>"</textarea>
+<label>Upload Resume</label>
+<span class="glyphicon glyphicon-upload"></span>
+<input type="file" name="resumelink" id="resumelink"> 
 </div>
+
 
 
 
