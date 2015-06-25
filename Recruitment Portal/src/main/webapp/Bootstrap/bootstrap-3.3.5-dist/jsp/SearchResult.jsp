@@ -42,7 +42,7 @@ ResultSet result=stat1.executeQuery();
       <ul class="nav navbar-nav">
         
         <li><a href="/recruitmentportal/Bootstrap/bootstrap-3.3.5-dist/uploadui.html">New Entry</a></li>
-        <li><a href="#">Update Information</a></li>
+        <li><a href="/recruitmentportal/Bootstrap/bootstrap-3.3.5-dist/jsp/UpdateEntries.jsp">Update Information</a></li>
         <li><a href="#">Upload from Excel</a></li>
       </ul>
       <form name="information" action="/recruitmentportal/Bootstrap/bootstrap-3.3.5-dist/jsp/SearchResult.jsp"  method="post" >
@@ -70,6 +70,7 @@ ResultSet result=stat1.executeQuery();
 		   <th>Experience</th>
 		   <th>comments</th>
 		   <th>Resume</th>
+		   <th>Other Files</th>
 		 </tr>
 		</thead>
 		<tbody>
@@ -84,7 +85,8 @@ ResultSet result=stat1.executeQuery();
 		  <td><%=result.getString("designation") %></td>
 		  <td><%=result.getString("experience") %>
 		  <td><%=result.getString("comments") %></td>
-		  <td><%=result.getString("resumelink") %></td>
+		  <td><a href="<%=result.getString("resumelink")%>" download><%=result.getString("resumelink")%></a></td>
+		  <td><a href="<%=result.getString("otherfile")%>" download><%=result.getString("otherfile")%></a></td>
 		 </tr>
 		
 		<% 		

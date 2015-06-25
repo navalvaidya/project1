@@ -53,71 +53,41 @@ stat1.setString(1, id);
 ResultSet result=stat1.executeQuery();
 while(result.next())
 {
-String department=result.getString("department");	
 
-String designation=result.getString("designation");
-String cctc=result.getString("cctc");
-String ectc=result.getString("ectc");
-String prevorg=result.getString("prevorg");
-String num=result.getString("num");
-String comments=result.getString("comments");
+String resume=result.getString("resumelink");
+String other=result.getString("otherfile");
 
 
 %>
 
 <div class="container">
 <div class="jumbotron">
-<form name="infoForm" id="infoForm" class="ajax" action="/recruitmentportal/UpdateResumeOtherController?id=<%=id %>"  enctype="multipart/form-data" method="post" onsubmit="submitbtn.disabled = true; return true;">
+<form name="infoForm" id="infoForm" class="ajax" action="/recruitmentportal/UpdateResumeOtherController?id=<%=id%>"  enctype="multipart/form-data" method="post" onsubmit="submitbtn.disabled = true; return true;">
 
 <div class="container">
 
 
 <div class="form-group" align="left">
 <label>Upload other documents</label>
-<input type="file" name="other" id="other"> 
+<input type="file" name="other" id="other" vlaue="<%=other%>"> 
 </div>
 
 <div class="form-group" align="left">
 <label>Upload Resume</label>
 <span class="glyphicon glyphicon-upload"></span>
-<input type="file" name="resumelink" id="resumelink"> 
+<input type="file" name="resumelink" id="resumelink" vlaue="<%=resume%>" > 
 </div>
 
 
+<input type="submit" value="Submit" class="btn btn-primary" name="submitbtn" id="submitbtn">
+<input type="reset" value="Reset" class="btn btn-primary" id="Reset Button">
+<a href="/recruitmentportal/Bootstrap/bootstrap-3.3.5-dist/main.html" class="btn btn-primary">Back</a>
 
 
 
 </div>
 </form>
-<input type="submit" value="Submit" class="btn btn-primary" name="submitbtn" id="submitbtn" onclick="submitChanges()">
-<input type="reset" value="Reset" class="btn btn-primary" id="Reset Button">
-<a href="/recruitmentportal/Bootstrap/bootstrap-3.3.5-dist/main.html" class="btn btn-primary">Back</a>
-<div id="resultContainer"> </div>
-<script>
 
-function submitChanges(){
-	
-$.ajax({
-type: "POST",
-url: "/recruitmentportal/DataUpdateController?id=<%=id%>",
-data: $("#infoForm").serialize(),
-success: function (msg) {
-	if (msg === true) {
-		$("#resultContainer").html("<p style='color:green' class='alert alert-success'>Database Updated</p>");
-		$("#resultContainer").delay(100).fadeIn(300);
-		$("#resultContainer").delay(1200).fadeOut(800);
-	} else {
-		$("#resultContainer").html("<div class='alert alert-danger'>Database Update Failed</div>");
-		$("#resultContainer").delay(1200).fadeOut(800);
-	}
-},
-error : function() {
-	$("#resultContainer").html("<div class='alert alert-danger'>Server Error. Request could not be placed, please try again later</div>");
-}
-});
-
-}
-</script>
 </div>
 </div>
 <%} %>

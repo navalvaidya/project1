@@ -78,8 +78,8 @@ ResultSet result=stat1.executeQuery();
 		  <td><a href="/recruitmentportal/Bootstrap/bootstrap-3.3.5-dist/jsp/UpdateForm.jsp?id=<%=result.getInt("id") %>" ><%=result.getString("designation") %></a></td>
 		  <td><a href="/recruitmentportal/Bootstrap/bootstrap-3.3.5-dist/jsp/UpdateForm.jsp?id=<%=result.getInt("id") %>" ><%=result.getString("experience") %></a></td>
 		  <td><a href="/recruitmentportal/Bootstrap/bootstrap-3.3.5-dist/jsp/UpdateForm.jsp?id=<%=result.getInt("id") %>" ><%=result.getString("comments") %></a></td>
-		  <td><%=result.getString("resumelink") %></td>
-		  <td><%=result.getString("other") %></td>
+		  <td><a href="/recruitmentportal/Bootstrap/bootstrap-3.3.5-dist/jsp/ResumeOtherUpdate.jsp?id=<%=result.getInt("id") %>" ><%=result.getString("resumelink") %></a></td>
+		  <td><a href="/recruitmentportal/Bootstrap/bootstrap-3.3.5-dist/jsp/ResumeOtherUpdate.jsp?id=<%=result.getInt("id") %>" ><%=result.getString("otherfile") %></a></td>
 		 
 		 </tr>
 		

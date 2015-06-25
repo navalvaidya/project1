@@ -28,6 +28,12 @@
   	<description></description>
   	<servlet-class>com.ideas.UpdateResumeOtherController</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>FileDownloadController</servlet-name>
+  	<display-name>FileDownloadController</display-name>
+  	<description></description>
+  	<servlet-class>com.ideas.FileDownloadController</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>UploadToDatabase</servlet-name>
   	<url-pattern>/UploadToDatabase</url-pattern>
@@ -43,6 +49,10 @@
   <servlet-mapping>
   	<servlet-name>UpdateResumeOtherController</servlet-name>
   	<url-pattern>/UpdateResumeOtherController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>FileDownloadController</servlet-name>
+  	<url-pattern>/FileDownloadController</url-pattern>
   </servlet-mapping>
   <session-config>
 <session-timeout>

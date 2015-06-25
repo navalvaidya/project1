@@ -10,7 +10,7 @@ public class SecondFileUpload {
 	static String rqPath2;
 	public static boolean processFile(String path, FileItemStream item){
 		try{
-			File f=new File("C:/Users/idnnaa/Desktop/other"); 
+			File f=new File("/Recruitment Portal/FileUploads/Other"); 
 			File savedFile = new File(f.getAbsolutePath()+File.separator+item.getName());
 			rqPath2=f.getAbsolutePath()+File.separator+item.getName();
 			
