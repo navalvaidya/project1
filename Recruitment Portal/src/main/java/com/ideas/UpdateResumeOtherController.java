@@ -45,7 +45,10 @@ public class UpdateResumeOtherController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Boolean updateResponse=false;
-		
+		LoadConfigFile config=new LoadConfigFile();
+	    String DBUrl=config.DBUrl();
+	    String DBPasswd=config.DBPasswd();
+	    String DBUser=config.DBUser();
 		boolean isMultiPart=ServletFileUpload.isMultipartContent(request);
 		if(isMultiPart)
 		{
@@ -86,7 +89,7 @@ public class UpdateResumeOtherController extends HttpServlet {
 					
 				}
 				Class.forName("com.mysql.jdbc.Driver").newInstance();
-				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","root");
+				Connection con = DriverManager.getConnection(DBUrl,DBUser,DBPasswd);
 				PreparedStatement stat2=con.prepareStatement("UPDATE employee SET resumelink=?, otherfile=? WHERE id=?");
 				//stat2.setString(1, fieldName);
 				String id = request.getParameter("id");

@@ -9,9 +9,9 @@ public class fileupload {
 	static String rqPath;
 	public static boolean processFile(String path, FileItemStream item){
 		try{
-			File f=new File("/Recruitment portal/FileUploads/Resume"); 
-			File savedFile = new File(f.getAbsolutePath()+File.separator+item.getName());
-			rqPath=f.getAbsolutePath()+File.separator+item.getName();
+			File f=new File("/Recruitment Portal/FileUploads/Resume"); 
+			File savedFile = new File(f.getPath()+File.separator+item.getName());
+			rqPath=f.getPath()+File.separator+item.getName();
 			
 			FileOutputStream fos = new FileOutputStream(savedFile);
 			InputStream is = item.openStream();

@@ -1,6 +1,6 @@
 package com.ideas;
 import com.ideas.fileupload;
-
+import com.ideas.LoadConfigFile;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -49,7 +49,10 @@ public class UploadFileServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		Boolean updateResponse=false;
-		
+		LoadConfigFile config=new LoadConfigFile();
+	    String DBUrl=config.DBUrl();
+	    String DBPasswd=config.DBPasswd();
+	    String DBUser=config.DBUser();
 		boolean isMultiPart=ServletFileUpload.isMultipartContent(request);
 		if(isMultiPart)
 		{
@@ -105,7 +108,7 @@ public class UploadFileServlet extends HttpServlet {
 					}
 				}
 				Class.forName("com.mysql.jdbc.Driver").newInstance();
-				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","root");
+				Connection con = DriverManager.getConnection(DBUrl,DBUser,DBPasswd);
 				PreparedStatement stat2=con.prepareStatement("INSERT INTO `test`.`employee` (department,name, designation, experience,cctc,ectc,prevorg,num,comments,resumelink,otherfile) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
 				//stat2.setString(1, fieldName);
 				for(i=0;i<9;i++)
@@ -140,7 +143,7 @@ public class UploadFileServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			response.setContentType("application/jason");
-			response.getWriter().print(updateResponse.toString());
+			response.getWriter().print("true");
 			response.flushBuffer();
 			 
 		}

@@ -10,6 +10,126 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
   <script src="js/main.js"></script>
+  <style>
+[title~=name]{
+ position: absolute;
+    left: 700px;
+    top: 150px;
+
+}
+[title~=namelabel]{
+ position: absolute;
+    left: 650px;
+    top: 160px;
+}
+[title~=department]{
+ position: absolute;
+    left: 350px;
+    top: 150px;
+
+}
+[title~=departmentlabel]{
+ position: absolute;
+    left: 265px;
+    top: 160px;
+}
+[title~=designation]{
+ position: absolute;
+    left: 350px;
+    top: 210px;
+
+}
+[title~=designationlabel]{
+ position: absolute;
+    left: 265px;
+    top: 220px;
+}
+[title~=experience]{
+ position: absolute;
+    left: 700px;
+    top: 210px;
+
+}
+[title~=experiencelabel]{
+ position: absolute;
+    left: 620px;
+    top: 220px;
+}
+[title~=cctc]{
+ position: absolute;
+    left: 350px;
+    top: 270px;
+
+}
+[title~=cctclabel]{
+ position: absolute;
+    left: 260px;
+    top: 280px;
+}
+[title~=ectc]{
+ position: absolute;
+    left: 700px;
+    top: 270px;
+
+}
+[title~=ectclabel]{
+ position: absolute;
+    left: 600px;
+    top: 280px;
+}
+[title~=prevorg]{
+ position: absolute;
+    left: 350px;
+    top: 330px;
+
+}
+[title~=prevorglabel]{
+ position: absolute;
+    left: 200px;
+    top: 340px;
+}
+[title~=num]{
+ position: absolute;
+    left: 700px;
+    top: 330px;
+
+}
+[title~=numlabel]{
+ position: absolute;
+    left: 580px;
+    top: 340px;
+}
+[title~=ofile]{
+ position: absolute;
+    left: 350px;
+    top: 390px;
+
+}
+[title~=olabel]{
+ position: absolute;
+    left: 180px;
+    top: 390px;
+}
+[title~=resume]{
+ position: absolute;
+    left: 700px;
+    top: 390px;
+
+}
+[title~=resumelabel]{
+ position: absolute;
+    left: 580px;
+    top: 390px;
+}
+
+
+}
+[title~=temp]{
+ position: absolute;
+    left: 350px;
+    top: 800px;
+}
+</style>
 </head>
 <body  style="background:#E6E6E6">
 <nav class="navbar navbar-inverse">
@@ -42,26 +162,16 @@
 
  </nav>
 <h1 align="center" >Enter the Information</h1>
-<div class="container">
+
 <div class="jumbotron">
 <form name="infoForm" id="infoForm" class="ajax" action="/recruitmentportal/UploadFileServlet"  enctype="multipart/form-data" method="post" onsubmit="submitbtn.disabled = true; return true;">
 
 <div class="container">
 
-<div class="form-group" align="left">
-<label>Upload other documents</label>
-<input type="file" name="other" id="other"> 
-</div>
-
-<div class="form-group" align="left">
-<label>Upload Resume</label>
-<span class="glyphicon glyphicon-upload"></span>
-<input type="file" name="resumelink" id="resumelink"> 
-</div>
-
+<div class="form-inline">
 <div class="form-group">
-<label for="department">Department</label>
-<select name="department" class="form-control" >
+<label for="department" title="departmentlabel">Department</label>
+<select name="department" class="form-control" title="department">
     <option value="department1">department1</option>
     <option value="department2">department2</option>
     <option value="department3">department3</option>
@@ -71,13 +181,16 @@
 </div>
 
 <div class="form-group">
-<label for="name">Name</label>
-<input type="text" name="name" placeholder="Enter Name"  class="form-control" required>
+<label for="name" title="namelabel">Name</label>
+<input type="text" name="name" placeholder="Enter Name"  class="form-control" title="name" required>
 </div>
 
+</div>
+
+<div class="form-inline">
 <div class="form-group">
-<label for="designation">Designation</label>
-<select name="designation" class="form-control" >
+<label for="designation" title="designationlabel">Designation</label>
+<select name="designation" class="form-control" title="designation">
     <option value="designation1">designation1</option>
     <option value="designation2">designation2</option>
     <option value="designation3">designation3</option>
@@ -86,34 +199,50 @@
 </div>
 
 <div class="form-group">
-<label for="experience">Experience</label>
-<input type="number" min="0" name="experience" placeholder="Experience" class="form-control" required>
+<label for="experience" title="experiencelabel">Experience</label>
+<input type="number" min="0" name="experience" placeholder="Experience" class="form-control" title="experience" required>
+</div>
+</div>
+
+
+<div class="form-inline">
+<div class="form-group">
+<label for="cctc" title="cctclabel">Current CTC</label>
+<input type="text" name="cctc" placeholder="Current CTC"  class="form-control" title="cctc">
 </div>
 
 <div class="form-group">
-<label for="cctc">Current CTC</label>
-<input type="text" name="cctc" placeholder="Current CTC"  class="form-control" >
+<label for="ectc" title="ectclabel">Expected CTC</label>
+<input type="text" name="ectc" placeholder="Expected CTC"  class="form-control" title="ectc">
+</div>
+</div>
+<div class="form-inline">
+<div class="form-group">
+<label for="prevorg" title="prevorglabel">Previous organization</label>
+<input type="text" name="prevorg" placeholder="Previous organization"  class="form-control" title="prevorg">
 </div>
 
 <div class="form-group">
-<label for="ectc">Expected CTC</label>
-<input type="text" name="ectc" placeholder="Expected CTC"  class="form-control" >
+<label for="num" title="numlabel">Contact Number</label>
+<input type="text" name="num" id="num" placeholder="Contact Number"  class="form-control" title="num">
 </div>
-
-<div class="form-group">
-<label for="prevorg">Previous organization</label>
-<input type="text" name="prevorg" placeholder="Previous organization"  class="form-control" >
 </div>
-
-<div class="form-group">
-<label for="num">Contact Number</label>
-<input type="text" name="num" placeholder="Contact Number"  class="form-control" >
+<div class="form-inline">
+<div class="form-group" align="left">
+<label title="olabel">Upload other documents</label>
+<input type="file" name="other" id="other" title="ofile"> 
 </div>
-
 
 <div class="form-group" align="left">
-<label for="comments">Comments</label><br>
-<textarea rows="4"  cols="50" name="comments" placeholder="Comments" ></textarea>
+<label title="resumelabel">Upload Resume</label>
+
+<input type="file" name="resumelink" id="resumelink" title="resume"> 
+</div>
+</div>
+<div title="temp">
+<div class="form-group" align="left">
+<label for="comments" title="commentslabel">Comments</label><br>
+<textarea rows="4"  cols="50" name="comments" placeholder="Comments" titlt="comments"></textarea>
 </div>
 
 
@@ -121,6 +250,7 @@
 <input type="submit" value="Submit" class="btn btn-primary" name="submitbtn" id="submitbtn">
 <input type="reset" value="Reset" class="btn btn-primary" id="Reset Button">
 <a href="/recruitmentportal/Bootstrap/bootstrap-3.3.5-dist/main.html" class="btn btn-primary">Back</a>
+</div>
 </div>
 </form>
 
@@ -186,7 +316,7 @@
 			});
 		    e.preventDefault(); //Prevent Default action. 
 		    e.unbind();
-		    $("#infoForm")[0].reset();
+		    //$("#infoForm")[0].reset();
 			});
 			
 	
@@ -213,7 +343,6 @@ error : function() {
 */
 //}
 </script>
-</div>
 </div>
 </body>
 </html>

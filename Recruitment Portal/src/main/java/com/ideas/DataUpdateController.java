@@ -36,6 +36,11 @@ public class DataUpdateController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		LoadConfigFile config=new LoadConfigFile();
+	    String DBUrl=config.DBUrl();
+	    String DBPasswd=config.DBPasswd();
+	    String DBUser=config.DBUser();
+		
 		String id=request.getParameter("id");
 		String department=request.getParameter("department");
 		String name=request.getParameter("name");
@@ -51,7 +56,7 @@ public class DataUpdateController extends HttpServlet {
 		try {
 		
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","root");
+			Connection con = DriverManager.getConnection(DBUrl,DBUser,DBPasswd);
 		
 			
 			System.out.println("Inside post method");

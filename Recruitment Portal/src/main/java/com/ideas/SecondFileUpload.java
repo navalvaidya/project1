@@ -11,8 +11,8 @@ public class SecondFileUpload {
 	public static boolean processFile(String path, FileItemStream item){
 		try{
 			File f=new File("/Recruitment Portal/FileUploads/Other"); 
-			File savedFile = new File(f.getAbsolutePath()+File.separator+item.getName());
-			rqPath2=f.getAbsolutePath()+File.separator+item.getName();
+			File savedFile = new File(f.getPath()+File.separator+item.getName());
+			rqPath2=f.getPath()+File.separator+item.getName();
 			
 			FileOutputStream fos = new FileOutputStream(savedFile);
 			InputStream is = item.openStream();

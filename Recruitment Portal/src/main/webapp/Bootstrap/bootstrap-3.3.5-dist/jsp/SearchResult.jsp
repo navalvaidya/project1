@@ -85,7 +85,7 @@ ResultSet result=stat1.executeQuery();
 		  <td><%=result.getString("designation") %></td>
 		  <td><%=result.getString("experience") %>
 		  <td><%=result.getString("comments") %></td>
-		  <td><a href="<%=result.getString("resumelink")%>" download><%=result.getString("resumelink")%></a></td>
+		  <td><a href="/recruitmentportal/FileDownloadController?id=<%=result.getString("id") %>"><%=result.getString("resumelink")%></a></td>
 		  <td><a href="<%=result.getString("otherfile")%>" download><%=result.getString("otherfile")%></a></td>
 		 </tr>
 		
