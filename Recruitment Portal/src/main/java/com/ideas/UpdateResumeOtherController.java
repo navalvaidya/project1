@@ -8,7 +8,6 @@ import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,7 +20,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 /**
  * Servlet implementation class UpdateResumeOtherController
  */
-@MultipartConfig
+
 public class UpdateResumeOtherController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -30,25 +29,27 @@ public class UpdateResumeOtherController extends HttpServlet {
      */
     public UpdateResumeOtherController() {
         super();
-        // TODO Auto-generated constructor stub
+  
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Boolean updateResponse=false;
+//		Boolean updateResponse=false;
 		LoadConfigFile config=new LoadConfigFile();
 	    String DBUrl=config.DBUrl();
 	    String DBPasswd=config.DBPasswd();
 	    String DBUser=config.DBUser();
+	    String id = request.getParameter("id");
+	    int Uniqueid=Integer.parseInt(id);
 		boolean isMultiPart=ServletFileUpload.isMultipartContent(request);
 		if(isMultiPart)
 		{
@@ -67,7 +68,7 @@ public class UpdateResumeOtherController extends HttpServlet {
 							j++;
 						System.out.println("Starting upload.....");
 						String path = getServletContext().getRealPath("/"); 
-						if(SecondFileUpload.processFile(path, item))
+						if(SecondFileUpload.processFile(path, item, Uniqueid))
 						{
 							response.getWriter().println("file upload successful");
 						System.out.println("other upload successful");
@@ -77,7 +78,7 @@ public class UpdateResumeOtherController extends HttpServlet {
 						}
 						else{
 							String path = getServletContext().getRealPath("/"); 
-							if(fileupload.processFile(path, item))
+							if(fileupload.processFile(path, item, Uniqueid))
 							{
 								response.getWriter().println("file upload successful");
 							System.out.println("resume upload successful");
@@ -92,7 +93,7 @@ public class UpdateResumeOtherController extends HttpServlet {
 				Connection con = DriverManager.getConnection(DBUrl,DBUser,DBPasswd);
 				PreparedStatement stat2=con.prepareStatement("UPDATE employee SET resumelink=?, otherfile=? WHERE id=?");
 				//stat2.setString(1, fieldName);
-				String id = request.getParameter("id");
+				
 				String resume=fileupload.rqPath;
 				String other=SecondFileUpload.rqPath2;
 				stat2.setString(1, resume);
@@ -102,8 +103,8 @@ public class UpdateResumeOtherController extends HttpServlet {
 			
 				stat2.close();
 				con.close();
-			    updateResponse=true;
-				RequestDispatcher rd=request.getRequestDispatcher("/Bootstrap/bootstrap-3.3.5-dist/main.html");  
+//			    updateResponse=true;
+				RequestDispatcher rd=request.getRequestDispatcher("/main.html");  
 		        rd.forward(request, response); 
 			}catch(FileUploadException fe)
 			{

@@ -3,7 +3,7 @@
 <%@page import="java.sql.*,java.io.PrintWriter"%>
 <%@page import="java.io.*" %>
  
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -15,6 +15,7 @@
 </head>
 <body>
 <%
+
 String keyword=request.getParameter("searchbox");
 Class.forName("com.mysql.jdbc.Driver");
 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","root");
@@ -36,20 +37,20 @@ ResultSet result=stat1.executeQuery();
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
        </button>
-   <a class="navbar-brand " href="http://localhost:8080/recruitmentportal/Bootstrap/bootstrap-3.3.5-dist/main.html">Ideas</a>
+   <a class="navbar-brand " href="/recruitmentportal/main.html">Ideas</a>
 </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         
-        <li><a href="http://localhost:8080/recruitmentportal/Bootstrap/bootstrap-3.3.5-dist/uploadui.html">New Entry</a></li>
-        <li><a href="#">Update Information</a></li>
+        <li><a href="/recruitmentportal/jsp/NewEntryForm.jsp">New Entry</a></li>
+        <li><a href="/recruitmentportal/jsp/UpdateEntries.jsp">Update Information</a></li>
         <li><a href="#">Upload from Excel</a></li>
       </ul>
-      <form name="information" action="http://localhost:8080/recruitmentportal/jsp/SearchResult.jsp"  method="post" >
+      <form name="information" action="/recruitmentportal/jsp/SearchResult.jsp"  method="post" >
       
     <div class="navbar-form navbar-right" role="search">
     <div class="form-group">
-      <input type="text" name="searchbox" class="form-control" placeholder="Search"> 
+      <input type="text" name="searchbox" class="form-control" placeholder="Search" required> 
     </div>
       <button type="submit" class="btn btn-default">Search</button>
     </div>
@@ -59,7 +60,7 @@ ResultSet result=stat1.executeQuery();
  </nav>
  
 <div class="container" >
-<div class="jumbotron">
+
 <h3>Search Results</h3>
 	<table class="table table-bordered">
 		 <thead>
@@ -70,6 +71,7 @@ ResultSet result=stat1.executeQuery();
 		   <th>Experience</th>
 		   <th>comments</th>
 		   <th>Resume</th>
+		   <th>Other Files</th>
 		 </tr>
 		</thead>
 		<tbody>
@@ -84,7 +86,8 @@ ResultSet result=stat1.executeQuery();
 		  <td><%=result.getString("designation") %></td>
 		  <td><%=result.getString("experience") %>
 		  <td><%=result.getString("comments") %></td>
-		  <td><%=result.getString("resumelink") %></td>
+		  <td><a href="/recruitmentportal/ResumeDownloadController?id=<%=result.getString("id") %>"><%=result.getString("resumelink")%></a></td>
+		  <td><a href="/recruitmentportal/FileDownloadController?id=<%=result.getString("id") %>"><%=result.getString("otherfile")%></a></td>
 		 </tr>
 		
 		<% 		
@@ -92,7 +95,7 @@ ResultSet result=stat1.executeQuery();
 		%>
 		</tbody>
 		</table>
-		</div>
+		
 		</div>
 		<%
 		stat1.close();

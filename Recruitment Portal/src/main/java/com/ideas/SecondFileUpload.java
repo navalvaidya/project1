@@ -8,11 +8,11 @@ import org.apache.commons.fileupload.FileItemStream;
 
 public class SecondFileUpload {
 	static String rqPath2;
-	public static boolean processFile(String path, FileItemStream item){
+	public static boolean processFile(String path, FileItemStream item, int Uniqueid){
 		try{
 			File f=new File("/Recruitment Portal/FileUploads/Other"); 
-			File savedFile = new File(f.getPath()+File.separator+item.getName());
-			rqPath2=f.getPath()+File.separator+item.getName();
+			File savedFile = new File(f.getPath()+File.separator+Uniqueid+item.getName());
+			rqPath2=f.getPath()+File.separator+Uniqueid+item.getName();
 			
 			FileOutputStream fos = new FileOutputStream(savedFile);
 			InputStream is = item.openStream();
@@ -27,7 +27,7 @@ public class SecondFileUpload {
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			rqPath2=null;
 		}
 		return false;
 	}

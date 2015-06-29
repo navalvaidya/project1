@@ -34,6 +34,24 @@
   	<description></description>
   	<servlet-class>com.ideas.FileDownloadController</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ResumeDownloadController</servlet-name>
+  	<display-name>ResumeDownloadController</display-name>
+  	<description></description>
+  	<servlet-class>com.ideas.ResumeDownloadController</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>NewDepartmentAdder</servlet-name>
+  	<display-name>NewDepartmentAdder</display-name>
+  	<description></description>
+  	<servlet-class>com.ideas.NewDepartmentAdder</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>NewDesignationAdder</servlet-name>
+  	<display-name>NewDesignationAdder</display-name>
+  	<description></description>
+  	<servlet-class>com.ideas.NewDesignationAdder</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>UploadToDatabase</servlet-name>
   	<url-pattern>/UploadToDatabase</url-pattern>
@@ -53,6 +71,18 @@
   <servlet-mapping>
   	<servlet-name>FileDownloadController</servlet-name>
   	<url-pattern>/FileDownloadController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ResumeDownloadController</servlet-name>
+  	<url-pattern>/ResumeDownloadController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>NewDepartmentAdder</servlet-name>
+  	<url-pattern>/NewDepartmentAdder</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>NewDesignationAdder</servlet-name>
+  	<url-pattern>/NewDesignationAdder</url-pattern>
   </servlet-mapping>
   <session-config>
 <session-timeout>

@@ -15,6 +15,7 @@
 </head>
 <body>
 <%
+
 String keyword=request.getParameter("searchbox");
 Class.forName("com.mysql.jdbc.Driver");
 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","root");
@@ -85,8 +86,8 @@ ResultSet result=stat1.executeQuery();
 		  <td><%=result.getString("designation") %></td>
 		  <td><%=result.getString("experience") %>
 		  <td><%=result.getString("comments") %></td>
-		  <td><a href="/recruitmentportal/FileDownloadController?id=<%=result.getString("id") %>"><%=result.getString("resumelink")%></a></td>
-		  <td><a href="<%=result.getString("otherfile")%>" download><%=result.getString("otherfile")%></a></td>
+		  <td><a href="/recruitmentportal/ResumeDownloadController?id=<%=result.getString("id") %>"><%=result.getString("resumelink")%></a></td>
+		  <td><a href="/recruitmentportal/FileDownloadController?id=<%=result.getString("id") %>"><%=result.getString("otherfile")%></a></td>
 		 </tr>
 		
 		<% 		

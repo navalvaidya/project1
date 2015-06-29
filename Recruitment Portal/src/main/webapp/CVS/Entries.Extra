@@ -1,4 +1,11 @@
 D/WEB-INF////////
+D/css////////
+D/fonts////////
+D/js////////
+D/jsp////////
 D/Bootstrap////////
-/index.html////*////
-/index.jsp////*////
+/AddDepartment.html////*////
+/AddDesignation.html////*////
+/logo.jpg////*////
+/main.html////*////
+/uploadui.html////*////
