@@ -3,11 +3,13 @@
 /LoadConfigFile.java////*////
 /commons-io-2.4.jar////*////
 /DataUpdateController.java////*////
-/FileDownloadController.java////*////
 /ResumeDownloadController.java////*////
+/NewDepartmentAdder.java////*////
+/NewDesignationAdder.java////*////
 /SecondFileUpload.java////*////
 /UpdateResumeOtherController.java////*////
 /UploadFileServlet.java////*////
 /fileupload.java////*////
-/NewDepartmentAdder.java////*////
-/NewDesignationAdder.java////*////
+/FileDownloadController.java////*////
+/DepartmentRemover.java////*////
+/DesignationRemover.java////*////

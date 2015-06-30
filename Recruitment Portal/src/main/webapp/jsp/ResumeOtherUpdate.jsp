@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-  <title>Update Form</title>
+  <title>Update Resume</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -22,7 +22,7 @@
          <span class="icon-bar"></span>
          <span class="icon-bar"></span>
     </button>
-      <a class="navbar-brand page-scroll" href="/recruitmentportal/main.html">Ideas</a>
+      <a class="navbar-brand page-scroll" href="/recruitmentportal/main.html">IDeas</a>
             </div>    
   <div>
      <ul class="nav navbar-nav">     
@@ -45,41 +45,18 @@
 
 <body>
 <h1 align="center" >Update Required Fields</h1>
-<%
-
-String id=request.getParameter("id");
-Class.forName("com.mysql.jdbc.Driver");
-Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","root");
-PreparedStatement stat1= con.prepareStatement("SELECT * FROM employee WHERE id=?");
-stat1.setString(1, id);
-ResultSet result=stat1.executeQuery();
-while(result.next())
-{
-
-String resume=result.getString("resumelink");
-String other=result.getString("otherfile");
-
-
-%>
 
 <div class="container">
 <div class="jumbotron">
-<form name="infoForm" id="infoForm" class="ajax" action="/recruitmentportal/UpdateResumeOtherController?id=<%=id%>"  enctype="multipart/form-data" method="post" onsubmit="submitbtn.disabled = true; return true;">
+<form name="infoForm" id="infoForm" class="ajax" action="/recruitmentportal/UpdateResumeOtherController?id=<%=request.getParameter("id")%>"  enctype="multipart/form-data" method="post" onsubmit="submitbtn.disabled = true; return true;">
 
 <div class="container">
 
 
 <div class="form-group" align="left">
-<label>Upload other documents</label>
-<input type="file" name="other" id="other" value = "<%=other%>"> 
-</div>
-
-<div class="form-group" align="left">
 <label>Upload Resume</label>
-<span class="glyphicon glyphicon-upload"></span>
-<input type="file" name="resumelink" id="resumelink" value="<%=resume%>" > 
+<input type="file" name="resume" id="resume" required> 
 </div>
-
 
 <input type="submit" value="Submit" class="btn btn-primary" name="submitbtn" id="submitbtn">
 <input type="reset" value="Reset" class="btn btn-primary" id="Reset Button">
@@ -90,8 +67,48 @@ String other=result.getString("otherfile");
 </div>
 </form>
 
+<div id="resultContainer"> </div>
+<script>
+
+	$("#infoForm").submit(function(e)
+			{
+		 var formObj = $(this);
+		    var formURL = formObj.attr("action");
+		    var formData = new FormData(this);
+		    $.ajax({
+		        url: formURL,
+		        type: 'POST',
+		        data:  formData,
+		    mimeType:"multipart/form-data",
+		 contentType: false,
+		       cache: false,
+		 processData: false,
+		        
+				
+				success: function (msg) {
+					
+				
+					if (msg === 'true') {
+						$("#resultContainer").html("<p style='color:green' class='alert alert-success'>Database Updated</p>");
+						$("#resultContainer").delay(100).fadeIn(300);
+						$("#resultContainer").delay(1200).fadeOut(800);
+					} else {
+						$("#resultContainer").html("<p style='color:red' class='alert alert-danger'>Database Update Failed</p>");
+						$("#resultContainer").delay(1200).fadeOut(800);
+					}
+				},
+				error : function() {
+					$("#resultContainer").html("<div class='alert alert-danger'>Server Error. Request could not be placed, please try again later</div>");
+				}
+			});
+		    e.preventDefault(); //Prevent Default action. 
+		    e.unbind();
+		    $("#infoForm")[0].reset();
+			});
+			
+</script>
+
 </div>
 </div>
-<%} %>
 </body>
 </html>

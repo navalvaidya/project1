@@ -52,6 +52,24 @@
   	<description></description>
   	<servlet-class>com.ideas.NewDesignationAdder</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>DepartmentRemover</servlet-name>
+  	<display-name>DepartmentRemover</display-name>
+  	<description></description>
+  	<servlet-class>com.ideas.DepartmentRemover</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>DesignationRemover</servlet-name>
+  	<display-name>DesignationRemover</display-name>
+  	<description></description>
+  	<servlet-class>com.ideas.DesignationRemover</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>UpdateOtherFileController</servlet-name>
+  	<display-name>UpdateOtherFileController</display-name>
+  	<description></description>
+  	<servlet-class>com.ideas.UpdateOtherFileController</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>UploadToDatabase</servlet-name>
   	<url-pattern>/UploadToDatabase</url-pattern>
@@ -83,6 +101,18 @@
   <servlet-mapping>
   	<servlet-name>NewDesignationAdder</servlet-name>
   	<url-pattern>/NewDesignationAdder</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>DepartmentRemover</servlet-name>
+  	<url-pattern>/DepartmentRemover</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>DesignationRemover</servlet-name>
+  	<url-pattern>/DesignationRemover</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UpdateOtherFileController</servlet-name>
+  	<url-pattern>/UpdateOtherFileController</url-pattern>
   </servlet-mapping>
   <session-config>
 <session-timeout>

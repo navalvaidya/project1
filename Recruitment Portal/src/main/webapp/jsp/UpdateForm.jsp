@@ -21,7 +21,7 @@
          <span class="icon-bar"></span>
          <span class="icon-bar"></span>
     </button>
-      <a class="navbar-brand page-scroll" href="/recruitmentportal/main.html">Ideas</a>
+      <a class="navbar-brand page-scroll" href="/recruitmentportal/main.html">IDeas</a>
             </div>    
   <div>
      <ul class="nav navbar-nav">     

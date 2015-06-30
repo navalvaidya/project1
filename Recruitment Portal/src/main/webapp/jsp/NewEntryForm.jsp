@@ -25,12 +25,12 @@
          <span class="icon-bar"></span>
          <span class="icon-bar"></span>
     </button>
-      <a class="navbar-brand page-scroll" href="/recruitmentportal/main.html">Ideas</a>
+      <a class="navbar-brand page-scroll" href="/recruitmentportal/main.html">IDeas</a>
             </div>    
 <div>
    <ul class="nav navbar-nav">
      
-     <li class="active"><a href="uploadui.html">New Entry</a></li>
+     <li class="active"><a href="/recruitmentportal/jsp/NewEntryForm.jsp">New Entry</a></li>
      <li><a href="/recruitmentportal/jsp/UpdateEntries.jsp">Update Information</a></li>
      <li><a href="#">Upload from Excel</a></li>
      
@@ -54,7 +54,7 @@
 <div class="container">
 <div class="row">
 <div class="form-group">
-<label for="department" class="col col-lg-2">Department<font color="red">*</font><a href="/recruitmentportal/AddDepartment.html"><span class="glyphicon glyphicon-plus-sign"></span></a></label>
+<label for="department" class="col col-lg-2">Department<font color="red">*</font><a href="/recruitmentportal/AddDepartment.html"><span class="glyphicon glyphicon-plus-sign"></span></a><a href="/recruitmentportal/jsp/RemoveDepartment.jsp"><span class="glyphicon glyphicon-minus-sign"></span></a></label>
 
 <div class="col col-lg-4">
 <%
@@ -89,7 +89,7 @@ while(result.next()){
 <br>
 <div class="row">
 <div class="form-group">
-<label for="designation" class="col col-lg-2">Designation<font color="red">*</font><a href="/recruitmentportal/AddDesignation.html"><span class="glyphicon glyphicon-plus-sign"></span></a></label>
+<label for="designation" class="col col-lg-2">Designation<font color="red">*</font><a href="/recruitmentportal/AddDesignation.html"><span class="glyphicon glyphicon-plus-sign"></span></a><a href="/recruitmentportal/jsp/RemoveDesignation.jsp"><span class="glyphicon glyphicon-minus-sign"></span></a></label>
 <div class="col col-lg-4">
 <select name="designation" class="form-control" >
     <%
@@ -101,7 +101,10 @@ while(result2.next()){
 </div>
 <label for="experience" class="col col-lg-2">Experience<font color="red">*</font></label>
 <div class="col col-lg-4">
+<div class="input-group container-fluid">			
 <input type="number" step="any" min="0" name="experience" placeholder="Experience" class="form-control" required>
+<div class="input-group-addon container-fluid">Years</div>
+</div>
 </div>
 </div>
 </div>
@@ -111,12 +114,18 @@ while(result2.next()){
 <div class="form-group">
 <label for="cctc" class="col col-lg-2">Current CTC</label>
 <div class="col col-lg-4">
+<div class="input-group container-fluid">
 <input type="number" step="any" name="cctc" placeholder="Current CTC"  class="form-control" >
+<div class="input-group-addon container-fluid">Lakhs Per Annum</div>
+</div>
 </div>
 
 <label for="ectc" class="col col-lg-2">Expected CTC</label>
 <div class="col col-lg-4">
+<div class="input-group container-fluid">
 <input type="number" step="any" name="ectc" placeholder="Expected CTC"  class="form-control" >
+<div class="input-group-addon container-fluid">Lakhs Per Annum</div>
+</div>
 </div>
 </div>
 </div>
@@ -156,7 +165,7 @@ while(result2.next()){
 
 <input type="submit" value="Submit" class="btn btn-primary" name="submitbtn" id="submitbtn">
 <input type="reset" value="Reset" class="btn btn-primary" id="Reset Button">
-<a href="/recruitmentportal/Bootstrap/bootstrap-3.3.5-dist/main.html" class="btn btn-primary">Back</a>
+<a href="/recruitmentportal/main.html" class="btn btn-primary">Back</a>
 </div>
 </form>
 

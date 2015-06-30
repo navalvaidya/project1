@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import javax.servlet.RequestDispatcher;
+//import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -43,7 +43,7 @@ public class UpdateResumeOtherController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		Boolean updateResponse=false;
+		Boolean updateResponse=false;
 		LoadConfigFile config=new LoadConfigFile();
 	    String DBUrl=config.DBUrl();
 	    String DBPasswd=config.DBPasswd();
@@ -57,55 +57,35 @@ public class UpdateResumeOtherController extends HttpServlet {
 			ServletFileUpload upload = new ServletFileUpload();
 			try
 			{
-				int j=0;
+				
 				FileItemIterator itr = upload.getItemIterator(request);
 				while(itr.hasNext())
 				{
 					FileItemStream item = itr.next();
 					if(!item.isFormField())
 					{
-						if(j==0){
-							j++;
 						System.out.println("Starting upload.....");
 						String path = getServletContext().getRealPath("/"); 
-						if(SecondFileUpload.processFile(path, item, Uniqueid))
-						{
-							response.getWriter().println("file upload successful");
-						System.out.println("other upload successful");
-						}
-						else
-							response.getWriter().println("file upload failed");
-						}
-						else{
-							String path = getServletContext().getRealPath("/"); 
-							if(fileupload.processFile(path, item, Uniqueid))
-							{
-								response.getWriter().println("file upload successful");
-							System.out.println("resume upload successful");
-							}
-							else
-								response.getWriter().println("file upload failed");
-						}
+						fileupload.processFile(path, item, Uniqueid);					
+						System.out.println("resume upload successful");
 					}
 					
 				}
 				Class.forName("com.mysql.jdbc.Driver").newInstance();
 				Connection con = DriverManager.getConnection(DBUrl,DBUser,DBPasswd);
-				PreparedStatement stat2=con.prepareStatement("UPDATE employee SET resumelink=?, otherfile=? WHERE id=?");
-				//stat2.setString(1, fieldName);
+				PreparedStatement stat2=con.prepareStatement("UPDATE employee SET resumelink=? WHERE id=?");
+				
+				
 				
 				String resume=fileupload.rqPath;
-				String other=SecondFileUpload.rqPath2;
 				stat2.setString(1, resume);
-				stat2.setString(2, other);
-				stat2.setString(3, id);
+				stat2.setString(2, id);
 				stat2.executeUpdate();
-			
+				updateResponse=true;
 				stat2.close();
 				con.close();
-//			    updateResponse=true;
-				RequestDispatcher rd=request.getRequestDispatcher("/main.html");  
-		        rd.forward(request, response); 
+//				RequestDispatcher rd=request.getRequestDispatcher("/main.html");  
+//		        rd.forward(request, response); 
 			}catch(FileUploadException fe)
 			{
 			fe.printStackTrace();	
@@ -122,12 +102,13 @@ public class UpdateResumeOtherController extends HttpServlet {
 				
 				e.printStackTrace();
 			}
-		
+			
 			 
 		}
 		
-		
-	}
+		response.setContentType("application/jason");
+		response.getWriter().print(updateResponse);
+		response.flushBuffer();
 }
-
+}
 

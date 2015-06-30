@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class FileDownloadController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+       final String[][] contentTypes={{"pdf" , "application/pdf"}, {"docx", "application/vnd.ms-word"} };
     /**
      * @see HttpServlet#HttpServlet()
      */
