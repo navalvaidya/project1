@@ -29,11 +29,11 @@
             </div>    
 <div>
    <ul class="nav navbar-nav">
-     
+     <li><a href="/recruitmentportal/jsp/ViewAll.jsp">View</a></li>
      <li class="active"><a href="/recruitmentportal/jsp/NewEntryForm.jsp">New Entry</a></li>
      <li><a href="/recruitmentportal/jsp/UpdateEntries.jsp">Update Information</a></li>
      <li><a href="#">Upload from Excel</a></li>
-     
+         
      </ul>
      <form name="information" action="/recruitmentportal/jsp/SearchResult.jsp"  method="post" >
       
@@ -55,7 +55,6 @@
 <div class="row">
 <div class="form-group">
 <label for="department" class="col col-lg-2">Department<font color="red">*</font><a href="/recruitmentportal/AddDepartment.html"><span class="glyphicon glyphicon-plus-sign"></span></a><a href="/recruitmentportal/jsp/RemoveDepartment.jsp"><span class="glyphicon glyphicon-minus-sign"></span></a></label>
-
 <div class="col col-lg-4">
 <%
 

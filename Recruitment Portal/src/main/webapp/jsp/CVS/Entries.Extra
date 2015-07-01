@@ -1,8 +1,10 @@
 /NewEntryForm.jsp////*////
+/OtherFileUpdate.jsp////*////
+/RemoveDepartment.jsp////*////
+/RemoveDesignation.jsp////*////
 /ResumeOtherUpdate.jsp////*////
 /SearchResult.jsp////*////
 /UpdateEntries.jsp////*////
 /UpdateForm.jsp////*////
 /UpdateSearchResult.jsp////*////
-/RemoveDepartment.jsp////*////
-/RemoveDesignation.jsp////*////
+/ViewAll.jsp////*////

@@ -13,7 +13,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
   <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
 <title>Remove Designation</title>
 
 </head>
@@ -66,10 +66,11 @@ con.close();
 </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        
+        <li><a href="/recruitmentportal/jsp/ViewAll.jsp">View</a></li>
         <li><a href="/recruitmentportal/jsp/NewEntryForm.jsp">New Entry</a></li>
         <li class="active"><a href="/recruitmentportal/jsp/UpdateEntries.jsp">Update Information</a></li>
         <li><a href="#">Upload from Excel</a></li>
+        
       </ul>
 
     </div>

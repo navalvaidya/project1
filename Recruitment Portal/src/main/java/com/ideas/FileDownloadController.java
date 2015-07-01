@@ -9,6 +9,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class FileDownloadController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       final String[][] contentTypes={{"pdf" , "application/pdf"}, {"docx", "application/vnd.ms-word"} };
+       final String[][] contentTypes={{"pdf" , "application/pdf"}, {"docx", "application/vnd.ms-word"},{"xls","application/vnd.ms-excel"} };
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -49,14 +50,16 @@ public class FileDownloadController extends HttpServlet {
 		ResultSet result = stat1.executeQuery();
 		String otherfile=null;
 		String name=null;
+		
 		while(result.next()){
 			otherfile=result.getString("otherfile");
 			name=result.getString("name");
-			System.out.println("resumelink: "+otherfile);
+			System.out.println("otherfile: "+otherfile);
 		}
 		 File file = new File(otherfile);
-		 response.setContentType("application/pdf");
-		 response.addHeader("Content-Disposition", "attachment; filename="+name+"other.pdf");
+		 String contentType = getContentType(otherfile.split("\\.")[1]);
+		 response.setContentType(contentType);
+		 response.addHeader("Content-Disposition", "attachment; filename="+name+"other."+otherfile.split("\\.")[1]);
 		 response.setContentLength((int) file.length());
 		 ServletOutputStream servletOutputStream = response.getOutputStream();
 		 BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(file));
@@ -68,10 +71,20 @@ public class FileDownloadController extends HttpServlet {
 		 if(servletOutputStream != null) servletOutputStream.close();
 		 if(bufferedInputStream != null) bufferedInputStream.close();
 	}catch(Exception e){
-		 e.printStackTrace();
+		RequestDispatcher rd=request.getRequestDispatcher("/jsp/SearchResult.jsp");  
+        rd.forward(request, response); 	
 	 }
 	}
-
+	
+	private String getContentType(String fileType){
+		String returnType = null;
+		for(int i=0; i<contentTypes.length; i++){
+			if(fileType.equals(contentTypes[i][0])) returnType = contentTypes[i][1];
+		}
+		
+		return returnType;
+	}
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

@@ -24,10 +24,12 @@
       <a class="navbar-brand page-scroll" href="/recruitmentportal/main.html">IDeas</a>
             </div>    
   <div>
-     <ul class="nav navbar-nav">     
+     <ul class="nav navbar-nav">  
+     <li><a href="/recruitmentportal/jsp/ViewAll.jsp">View</a></li>   
      <li><a href="/recruitmentportal/jsp/NewEntryForm.jsp">New Entry</a></li>
      <li><a href="/recruitmentportal/jsp/UpdateEntries.jsp">Update Information</a></li>
      <li><a href="#">Upload from Excel</a></li>
+     
      </ul>
      
   <form name="information" action="/recruitmentportal/jsp/SearchResult.jsp"  method="post" >    
@@ -50,6 +52,11 @@ String id=request.getParameter("id");
 Class.forName("com.mysql.jdbc.Driver");
 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","root");
 PreparedStatement stat1= con.prepareStatement("SELECT * FROM employee WHERE id=?");
+
+Statement stat2 = con.createStatement();
+ResultSet result2 = stat2.executeQuery("SELECT * FROM department");
+Statement stat3 = con.createStatement();
+ResultSet result3 = stat3.executeQuery("SELECT * FROM designation");
 stat1.setString(1, id);
 ResultSet result=stat1.executeQuery();
 while(result.next())
@@ -65,67 +72,115 @@ String comments=result.getString("comments");
 
 %>
 
-<div class="container">
+
 <div class="jumbotron">
 <form name="infoForm" id="infoForm" class="ajax" action="/recruitmentportal/DataUpdateController?id=<%=id %>"  method="post" onsubmit="submitbtn.disabled = true; return true;">
 
 <div class="container">
-
-
+<div class="row">
 <div class="form-group">
-<label for="department">Department</label>
-<input type="text" name="department" placeholder="Enter Name"  class="form-control" value="<%=result.getString("department")%>" required>
+<label for="department" class="col col-lg-2">Department<font color="red">*</font><a href="/recruitmentportal/AddDepartment.html"><span class="glyphicon glyphicon-plus-sign"></span></a><a href="/recruitmentportal/jsp/RemoveDepartment.jsp"><span class="glyphicon glyphicon-minus-sign"></span></a></label>
+<div class="col col-lg-4">
+<select name="department" class="form-control" >
+<option value=<%=result.getString("department")%>><%=result.getString("department")%></option>
+<%
+while(result2.next()){
+%>
+ <option value=<%=result2.getString("department")%>><%=result2.getString("department")%></option>
+ 
+<%} %> 
+
+</select>
 </div>
-
-<div class="form-group">
-<label for="name">Name</label>
+<label for="name" class="col col-lg-2">Name<font color="red">*</font></label>
+<div class="col col-lg-4">
 <input type="text" name="name" placeholder="Enter Name"  class="form-control" value="<%=result.getString("name")%>" required>
 </div>
-
-<div class="form-group">
-<label for="designation">Designation</label>
-<input type="text" name="designation" placeholder="Enter Name"  class="form-control" value="<%=result.getString("designation")%>" required>
 </div>
+</div>
+<br>
+<br>
 
+
+<div class="row">
 <div class="form-group">
-<label for="experience">Experience</label>
+<label for="designation" class="col col-lg-2">Designation<font color="red">*</font><a href="/recruitmentportal/AddDesignation.html"><span class="glyphicon glyphicon-plus-sign"></span></a><a href="/recruitmentportal/jsp/RemoveDesignation.jsp"><span class="glyphicon glyphicon-minus-sign"></span></a></label>
+<div class="col col-lg-4">
+<select name="designation" class="form-control" >
+<option value=<%=result.getString("designation")%>><%=result.getString("designation")%></option>
+<%
+while(result3.next()){
+%>
+ <option value=<%=result3.getString("designation")%>><%=result3.getString("designation")%></option>
+ 
+<%} %> 
+
+</select>
+</div>
+<label for="experience" class="col col-lg-2">Experience<font color="red">*</font></label>
+<div class="col col-lg-4">
+<div class="input-group container-fluid">			
 <input type="number" min="0" name="experience" placeholder="Experience" class="form-control" value="<%=result.getString("experience")%>">
+<div class="input-group-addon container-fluid">Years</div>
 </div>
-
+</div>
+</div>
+</div>
+<br>
+<br>
+<div class="row">
 <div class="form-group">
-<label for="cctc">Current CTC</label>
+<label for="cctc" class="col col-lg-2">Current CTC</label>
+<div class="col col-lg-4">
+<div class="input-group container-fluid">
 <input type="text" name="cctc" placeholder="Current CTC"  class="form-control" value="<%=result.getString("cctc")%>">
+<div class="input-group-addon container-fluid">Lakhs Per Annum</div>
+</div>
 </div>
 
-<div class="form-group">
-<label for="ectc">Expected CTC</label>
+<label for="ectc" class="col col-lg-2">Expected CTC</label>
+<div class="col col-lg-4">
+<div class="input-group container-fluid">
 <input type="text" name="ectc" placeholder="Expected CTC"  class="form-control" value="<%=result.getString("ectc")%>">
+<div class="input-group-addon container-fluid">Lakhs Per Annum</div>
 </div>
-
+</div>
+</div>
+</div>
+<br>
+<br>
+<div class="row">
 <div class="form-group">
-<label for="prevorg">Previous organization</label>
+<label for="prevorg" class="col col-lg-2">Previous organization</label>
+<div class="col col-lg-4">
+<div class="form-group">
 <input type="text" name="prevorg" placeholder="Previous organization"  class="form-control" value="<%=result.getString("prevorg")%>">
 </div>
-
-
-
+</div>
+</div>
+<br>
+<br>
 
 <div class="form-group" align="left">
 <label for="comments">Comments</label><br>
 <textarea rows="4"  cols="50" name="comments" placeholder="Comments" >"<%=result.getString("comments")%>"</textarea>
 </div>
-
-
-
-
+</div>
 </div>
 </form>
+<div class="row">
+<div class="col col-xs-1"></div>
+<div class="col col-lg-3">
 <input type="submit" value="Submit" class="btn btn-primary" name="submitbtn" id="submitbtn" onclick="submitChanges()">
 <input type="reset" value="Reset" class="btn btn-primary" id="Reset Button">
 <a href="/recruitmentportal/main.html" class="btn btn-primary">Back</a>
-<div id="resultContainer"> </div>
-<script>
+</div>
+</div>
+</div>
 
+<div id="resultContainer"> </div>
+
+<script>
 function submitChanges(){
 	
 $.ajax({
@@ -149,8 +204,7 @@ error : function() {
 
 }
 </script>
-</div>
-</div>
+
 <%} %>
 </body>
 </html>

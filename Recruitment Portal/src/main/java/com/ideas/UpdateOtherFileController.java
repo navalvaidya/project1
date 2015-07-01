@@ -6,6 +6,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import java.util.Date;
+
 //import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -72,13 +74,15 @@ public class UpdateOtherFileController extends HttpServlet {
 				}
 				Class.forName("com.mysql.jdbc.Driver").newInstance();
 				Connection con = DriverManager.getConnection(DBUrl,DBUser,DBPasswd);
-				PreparedStatement stat2=con.prepareStatement("UPDATE employee SET otherfile=? WHERE id=?");
+				PreparedStatement stat2=con.prepareStatement("UPDATE employee SET otherfile=?,lastmodified=? WHERE id=?");
 				
 				
 				
 				String other=SecondFileUpload.rqPath2;
+				Date date=new Date();
 				stat2.setString(1, other);
-				stat2.setString(2, id);
+				stat2.setString(2, date.toString());
+				stat2.setString(3, id);
 				stat2.executeUpdate();
 				updateResponse=true;
 				stat2.close();

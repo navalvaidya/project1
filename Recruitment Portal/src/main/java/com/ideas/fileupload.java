@@ -15,11 +15,6 @@ public class fileupload {
 			File f=new File("/Recruitment Portal/FileUploads/Resume"); 
 		
 			File savedFile = new File(f.getPath()+File.separator+Uniqueid+item.getName());
-			if(f.getPath()+File.separator+Uniqueid+item.getName()=="/Recruitment Portal/FileUploads/Resume/"+Uniqueid){
-				rqPath=null;
-				return false;
-			}
-			else{
 			rqPath=f.getPath()+File.separator+Uniqueid+item.getName();
 			
 			FileOutputStream fos = new FileOutputStream(savedFile);
@@ -32,7 +27,7 @@ public class fileupload {
 			fos.flush();
 			fos.close();
 			return true;
-			}
+			
 		}
 		catch(Exception e)
 		{

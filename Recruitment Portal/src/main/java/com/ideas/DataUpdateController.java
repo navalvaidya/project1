@@ -1,5 +1,6 @@
 package com.ideas;
 
+import java.util.Date;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -22,14 +23,14 @@ public class DataUpdateController extends HttpServlet {
      */
     public DataUpdateController() {
         super();
-        // TODO Auto-generated constructor stub
+        
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 	}
 
 	/**
@@ -40,7 +41,7 @@ public class DataUpdateController extends HttpServlet {
 	    String DBUrl=config.DBUrl();
 	    String DBPasswd=config.DBPasswd();
 	    String DBUser=config.DBUser();
-		
+		Date date=new Date();
 		String id=request.getParameter("id");
 		String department=request.getParameter("department");
 		String name=request.getParameter("name");
@@ -59,7 +60,7 @@ public class DataUpdateController extends HttpServlet {
 		
 			
 			System.out.println("Inside post method");
-			PreparedStatement stat2=con.prepareStatement("UPDATE employee SET department=?, name=?, designation=?, experience=?, cctc=?, ectc=?, prevorg=?,comments=? WHERE id=?");
+			PreparedStatement stat2=con.prepareStatement("UPDATE employee SET department=?, name=?, designation=?, experience=?, cctc=?, ectc=?, prevorg=?,comments=?,lastmodified=? WHERE id=?");
 			stat2.setString(1, department);
 			stat2.setString(2, name);
 			stat2.setString(3, designation );
@@ -68,7 +69,8 @@ public class DataUpdateController extends HttpServlet {
 			stat2.setString(6, ectc);
 			stat2.setString(7, prevorg);
 			stat2.setString(8, comments);
-			stat2.setString(9,id);
+			stat2.setString(9, date.toString());
+			stat2.setString(10,id);
 			stat2.executeUpdate();
 			System.out.println("Update Successful!!!");
 			param=true;

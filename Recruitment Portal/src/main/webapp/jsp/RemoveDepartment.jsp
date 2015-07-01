@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@page import="java.sql.*,java.io.PrintWriter"%>
 <%@page import="java.io.*" %>
+<%@page import="com.ideas.LoadConfigFile"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,6 +23,7 @@
 <h1 align="center">Remove a Department</h1>
 
 <%
+
 Class.forName("com.mysql.jdbc.Driver");
 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","root");
 Statement stat1 = con.createStatement();
@@ -50,6 +52,7 @@ while(result.next()){
 <%
 stat1.close();
 con.close();
+
 %>
  
 </table>
@@ -66,10 +69,11 @@ con.close();
 </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        
+        <li><a href="/recruitmentportal/jsp/ViewAll.jsp">View</a></li>
         <li><a href="/recruitmentportal/jsp/NewEntryForm.jsp">New Entry</a></li>
         <li class="active"><a href="/recruitmentportal/jsp/UpdateEntries.jsp">Update Information</a></li>
         <li><a href="#">Upload from Excel</a></li>
+        
       </ul>
 
     </div>

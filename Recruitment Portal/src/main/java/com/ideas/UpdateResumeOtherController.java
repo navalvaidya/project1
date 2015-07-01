@@ -6,6 +6,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import java.util.Date;
+
 //import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -73,13 +75,15 @@ public class UpdateResumeOtherController extends HttpServlet {
 				}
 				Class.forName("com.mysql.jdbc.Driver").newInstance();
 				Connection con = DriverManager.getConnection(DBUrl,DBUser,DBPasswd);
-				PreparedStatement stat2=con.prepareStatement("UPDATE employee SET resumelink=? WHERE id=?");
+				PreparedStatement stat2=con.prepareStatement("UPDATE employee SET resumelink=?,lastmodified=? WHERE id=?");
 				
 				
 				
 				String resume=fileupload.rqPath;
+				Date date=new Date();
 				stat2.setString(1, resume);
-				stat2.setString(2, id);
+				stat2.setString(2, date.toString());
+				stat2.setString(3, id);
 				stat2.executeUpdate();
 				updateResponse=true;
 				stat2.close();

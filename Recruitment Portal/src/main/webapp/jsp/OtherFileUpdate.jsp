@@ -25,10 +25,12 @@
       <a class="navbar-brand page-scroll" href="/recruitmentportal/main.html">IDeas</a>
             </div>    
   <div>
-     <ul class="nav navbar-nav">     
+     <ul class="nav navbar-nav">   
+     <li><a href="/recruitmentportal/jsp/ViewAll.jsp">View</a></li>  
      <li><a href="/recruitmentportal/jsp/NewEntryForm.jsp">New Entry</a></li>
      <li><a href="/recruitmentportal/jsp/UpdateEntries.jsp">Update Information</a></li>
      <li><a href="#">Upload from Excel</a></li>
+     
      </ul>
      
   <form name="information" action="/recruitmentportal/jsp/SearchResult.jsp"  method="post" >    

@@ -2,6 +2,8 @@ package com.ideas;
 import com.ideas.fileupload;
 import com.ideas.LoadConfigFile;
 
+import java.util.Date;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -96,24 +98,38 @@ public class UploadFileServlet extends HttpServlet {
 					{
 						if(j==0){
 							j++;
-						System.out.println("Starting upload.....");
-						String path = getServletContext().getRealPath("/"); 
-						SecondFileUpload.processFile(path, item, Uniqueid);
 						
+						String path = getServletContext().getRealPath("/"); 
+						String item1=item.getName();
+						
+						if(!item1.equals("")){
+						SecondFileUpload.processFile(path, item, Uniqueid);
+						}
+						else
+						{
+							SecondFileUpload.rqPath2=null;
+						}
 						
 							
 						}
 						else{
 							String path = getServletContext().getRealPath("/"); 
-							fileupload.processFile(path, item,Uniqueid);
+							String item2=item.getName();
 							
+							if(!item2.equals("")){
+							fileupload.processFile(path, item,Uniqueid);
+							}
+							else
+							{
+								fileupload.rqPath=null;
+							}
 						}
 					}
 				}
 				Class.forName("com.mysql.jdbc.Driver").newInstance();
 				Connection con = DriverManager.getConnection(DBUrl,DBUser,DBPasswd);
-				PreparedStatement stat2=con.prepareStatement("INSERT INTO `test`.`employee` (department,name, designation, experience,cctc,ectc,prevorg,comments,resumelink,otherfile) VALUES (?,?,?,?,?,?,?,?,?,?)");
-				//stat2.setString(1, fieldName);
+				PreparedStatement stat2=con.prepareStatement("INSERT INTO `test`.`employee` (department,name, designation, experience,cctc,ectc,prevorg,comments,resumelink,otherfile,createdon,lastmodified) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+				Date date=new Date();
 				for(i=0;i<8;i++)
 				{
 				stat2.setString(i+1, temp[i]);
@@ -122,6 +138,8 @@ public class UploadFileServlet extends HttpServlet {
 				other=SecondFileUpload.rqPath2;
 				stat2.setString(9, resume);
 				stat2.setString(10, other);
+				stat2.setString(11, date.toString());
+				stat2.setString(12, date.toString());
 				stat2.executeUpdate();
 			
 				stat2.close();
@@ -129,8 +147,7 @@ public class UploadFileServlet extends HttpServlet {
 				stat1.close();
 				con1.close();
 			    updateResponse=true;
-//				RequestDispatcher rd=request.getRequestDispatcher("/UploadToDatabase");  
-//		        rd.forward(request, response); 
+
 			}
 			}catch(FileUploadException fe)
 			{
@@ -152,14 +169,9 @@ public class UploadFileServlet extends HttpServlet {
 			{	
 				e.printStackTrace();
 			}
-			System.out.println("test");
 			response.setContentType("application/jason");
 			response.getWriter().print(updateResponse);
-			response.flushBuffer();
-			 
-		
-		
-		
+			response.flushBuffer();		
 	}
 
 }
