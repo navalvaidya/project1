@@ -69,6 +69,7 @@ public class ResumeDownloadController extends HttpServlet {
 		 }
 		 if(servletOutputStream != null) servletOutputStream.close();
 		 if(bufferedInputStream != null) bufferedInputStream.close();
+		 con.close();
 	}catch(Exception e){
 		RequestDispatcher rd=request.getRequestDispatcher("/jsp/SearchResult.jsp");  
         rd.forward(request, response); 		 

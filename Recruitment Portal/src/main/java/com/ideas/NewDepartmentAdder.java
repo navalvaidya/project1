@@ -50,6 +50,7 @@ public class NewDepartmentAdder extends HttpServlet {
 			PreparedStatement stat2=con.prepareStatement("INSERT INTO `test`.`department` (`department`) VALUES (?)");
 			stat2.setString(1, department);
 			stat2.executeUpdate();
+			con.close();
 			RequestDispatcher rd=request.getRequestDispatcher("/jsp/NewEntryForm.jsp");  
 	        rd.forward(request, response); 
 			

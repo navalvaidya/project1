@@ -42,6 +42,8 @@ public class DepartmentRemover extends HttpServlet {
 			PreparedStatement stat2=con.prepareStatement("DELETE FROM department WHERE id=?");
 			stat2.setString(1, id);
 			stat2.executeUpdate();
+			stat2.close();
+			con.close();
 			RequestDispatcher rd=request.getRequestDispatcher("/jsp/NewEntryForm.jsp");  
 	        rd.forward(request, response); 
 			

@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@page import="java.sql.*,java.io.PrintWriter"%>
 <%@page import="java.io.*" %>
- 
+<%@page import= "java.util.Properties" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,9 +21,16 @@
 <body>
 <%
 
+Properties prop = new Properties();
+InputStream input = new FileInputStream("/Recruitment Portal/config.properties");
+prop.load(input);
+String dburl = prop.getProperty("database");
+String user = prop.getProperty("dbuser");
+String passwd = prop.getProperty("dbpassword");
+
 String keyword=request.getParameter("searchbox");
 Class.forName("com.mysql.jdbc.Driver");
-Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","root");
+Connection con = DriverManager.getConnection(dburl,user,passwd);
 PreparedStatement stat1 = con.prepareStatement("SELECT * FROM EMPLOYEE WHERE department REGEXP ? OR name REGEXP ? OR designation REGEXP ? OR experience REGEXP ?");
 stat1.setString(1, keyword);
 stat1.setString(2, keyword);
@@ -41,14 +49,14 @@ ResultSet result=stat1.executeQuery();
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
        </button>
-   <a class="navbar-brand " href="/recruitmentportal/main.html">IDeas</a>
+   <a class="navbar-brand " href="/recruitmentportal/main.html">IDeaS</a>
 </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><a href="/recruitmentportal/jsp/ViewAll.jsp">View</a></li>
         <li><a href="/recruitmentportal/jsp/NewEntryForm.jsp">New Entry</a></li>
         <li><a href="/recruitmentportal/jsp/UpdateEntries.jsp">Update Information</a></li>
-        <li><a href="#">Upload from Excel</a></li>
+        <li><a href="/recruitmentportal/ExcelUpload.html">Upload from Excel</a></li>
         
       </ul>
       <form name="information" action="/recruitmentportal/jsp/SearchResult.jsp"  method="post" >

@@ -22,14 +22,14 @@
          <span class="icon-bar"></span>
          <span class="icon-bar"></span>
     </button>
-      <a class="navbar-brand page-scroll" href="/recruitmentportal/main.html">IDeas</a>
+      <a class="navbar-brand page-scroll" href="/recruitmentportal/main.html">IDeaS</a>
             </div>    
   <div>
      <ul class="nav navbar-nav">   
      <li><a href="/recruitmentportal/jsp/ViewAll.jsp">View</a></li>  
      <li><a href="/recruitmentportal/jsp/NewEntryForm.jsp">New Entry</a></li>
      <li><a href="/recruitmentportal/jsp/UpdateEntries.jsp">Update Information</a></li>
-     <li><a href="#">Upload from Excel</a></li>
+     <li><a href="/recruitmentportal/ExcelUpload.html">Upload from Excel</a></li>
      
      </ul>
      

@@ -49,6 +49,7 @@ public class NewDesignationAdder extends HttpServlet {
 			PreparedStatement stat2=con.prepareStatement("INSERT INTO `test`.`designation` (`designation`) VALUES (?)");
 			stat2.setString(1, designation);
 			stat2.executeUpdate();
+			con.close();
 			RequestDispatcher rd=request.getRequestDispatcher("/jsp/NewEntryForm.jsp");  
 	        rd.forward(request, response); 
 	    } catch (InstantiationException e) {

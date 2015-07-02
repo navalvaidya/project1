@@ -19,6 +19,9 @@ public class CreateConfigFile {
 			prop.setProperty("database", "jdbc:mysql://localhost:3306/test");
 			prop.setProperty("dbuser", "root");
 			prop.setProperty("dbpassword", "root");
+			prop.setProperty("resumeconfig", "/Recruitment Portal/FileUploads/Resume");
+			prop.setProperty("otherconfig","/Recruitment Portal/FileUploads/Other");
+			prop.setProperty("excelconfig", "/Recruitment Portal/FileUploads/Excel");
 			
 			// save properties to project root folder
 			prop.store(output, null);

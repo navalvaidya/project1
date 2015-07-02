@@ -70,6 +70,36 @@
   	<description></description>
   	<servlet-class>com.ideas.UpdateOtherFileController</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ExcelDataExtractor</servlet-name>
+  	<display-name>ExcelDataExtractor</display-name>
+  	<description></description>
+  	<servlet-class>com.ideas.ExcelDataExtractor</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ExcelExtractor</servlet-name>
+  	<display-name>ExcelExtractor</display-name>
+  	<description></description>
+  	<servlet-class>com.ideas.ExcelExtractor</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ExcelExtractorInitialize</servlet-name>
+  	<display-name>ExcelExtractorInitialize</display-name>
+  	<description></description>
+  	<servlet-class>com.ideas.ExcelExtractorInitialize</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ExcelExtractorClass1</servlet-name>
+  	<display-name>ExcelExtractorClass1</display-name>
+  	<description></description>
+  	<servlet-class>com.ideas.ExcelExtractorClass1</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ExcelExtractorInitialize1</servlet-name>
+  	<display-name>ExcelExtractorInitialize1</display-name>
+  	<description></description>
+  	<servlet-class>com.ideas.ExcelExtractorInitialize1</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>UploadToDatabase</servlet-name>
   	<url-pattern>/UploadToDatabase</url-pattern>
@@ -113,6 +143,26 @@
   <servlet-mapping>
   	<servlet-name>UpdateOtherFileController</servlet-name>
   	<url-pattern>/UpdateOtherFileController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ExcelDataExtractor</servlet-name>
+  	<url-pattern>/ExcelDataExtractor</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ExcelExtractor</servlet-name>
+  	<url-pattern>/ExcelExtractor</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ExcelExtractorInitialize</servlet-name>
+  	<url-pattern>/ExcelExtractorInitialize</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ExcelExtractorClass1</servlet-name>
+  	<url-pattern>/ExcelExtractorClass1</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ExcelExtractorInitialize1</servlet-name>
+  	<url-pattern>/ExcelExtractorInitialize1</url-pattern>
   </servlet-mapping>
   <session-config>
 <session-timeout>

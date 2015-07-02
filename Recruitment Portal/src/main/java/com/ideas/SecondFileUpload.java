@@ -1,8 +1,10 @@
 package com.ideas;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.util.Properties;
 
 import org.apache.commons.fileupload.FileItemStream;
 
@@ -10,7 +12,11 @@ public class SecondFileUpload {
 	static String rqPath2;
 	public static boolean processFile(String path, FileItemStream item, int Uniqueid){
 		try{
-			File f=new File("/Recruitment Portal/FileUploads/Other"); 
+			Properties prop = new Properties();
+			InputStream input = new FileInputStream("/Recruitment Portal/config.properties");
+			prop.load(input);
+			String otherpath = prop.getProperty("otherconfig");
+			File f=new File(otherpath); 
 			File savedFile = new File(f.getPath()+File.separator+Uniqueid+item.getName());
 			rqPath2=f.getPath()+File.separator+Uniqueid+item.getName();
 			

@@ -68,7 +68,7 @@ public class UpdateResumeOtherController extends HttpServlet {
 					{
 						System.out.println("Starting upload.....");
 						String path = getServletContext().getRealPath("/"); 
-						fileupload.processFile(path, item, Uniqueid);					
+						FileUploadClass.processFile(path, item, Uniqueid);					
 						System.out.println("resume upload successful");
 					}
 					
@@ -79,7 +79,7 @@ public class UpdateResumeOtherController extends HttpServlet {
 				
 				
 				
-				String resume=fileupload.rqPath;
+				String resume=FileUploadClass.rqPath;
 				Date date=new Date();
 				stat2.setString(1, resume);
 				stat2.setString(2, date.toString());

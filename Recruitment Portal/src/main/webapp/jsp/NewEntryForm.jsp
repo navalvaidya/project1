@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@page import="java.sql.*,java.io.PrintWriter"%>
 <%@page import="java.io.*" %>
-
+<%@page import= "java.util.Properties" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,14 +25,14 @@
          <span class="icon-bar"></span>
          <span class="icon-bar"></span>
     </button>
-      <a class="navbar-brand page-scroll" href="/recruitmentportal/main.html">IDeas</a>
+      <a class="navbar-brand page-scroll" href="/recruitmentportal/main.html">IDeaS</a>
             </div>    
 <div>
    <ul class="nav navbar-nav">
      <li><a href="/recruitmentportal/jsp/ViewAll.jsp">View</a></li>
      <li class="active"><a href="/recruitmentportal/jsp/NewEntryForm.jsp">New Entry</a></li>
      <li><a href="/recruitmentportal/jsp/UpdateEntries.jsp">Update Information</a></li>
-     <li><a href="#">Upload from Excel</a></li>
+     <li><a href="/recruitmentportal/ExcelUpload.html">Upload from Excel</a></li>
          
      </ul>
      <form name="information" action="/recruitmentportal/jsp/SearchResult.jsp"  method="post" >
@@ -57,9 +57,15 @@
 <label for="department" class="col col-lg-2">Department<font color="red">*</font><a href="/recruitmentportal/AddDepartment.html"><span class="glyphicon glyphicon-plus-sign"></span></a><a href="/recruitmentportal/jsp/RemoveDepartment.jsp"><span class="glyphicon glyphicon-minus-sign"></span></a></label>
 <div class="col col-lg-4">
 <%
+Properties prop = new Properties();
+InputStream input = new FileInputStream("/Recruitment Portal/config.properties");
+prop.load(input);
+String dburl = prop.getProperty("database");
+String user = prop.getProperty("dbuser");
+String passwd = prop.getProperty("dbpassword");
 
 Class.forName("com.mysql.jdbc.Driver");
-Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","root");
+Connection con = DriverManager.getConnection(dburl,user,passwd);
 Statement stat1 = con.createStatement();
 ResultSet result = stat1.executeQuery("SELECT * FROM department");
 Statement stat2 = con.createStatement();
@@ -98,6 +104,7 @@ while(result2.next()){
 <%} %> 
  </select>
 </div>
+<%con.close(); %>
 <label for="experience" class="col col-lg-2">Experience<font color="red">*</font></label>
 <div class="col col-lg-4">
 <div class="input-group container-fluid">			
